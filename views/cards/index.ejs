@@ -2,4 +2,10 @@
 
 <h1>This is card index route with path /cards</h1>
 
+<% cards.forEach(function(card){ %>
+    <p><%=card.name%></p>
+    <img src="<%=card.image%>">
+    <p><%=card.description%></p>
+<% }) %>
+
 <% include ../partials/footer %>
