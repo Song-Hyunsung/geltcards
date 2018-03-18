@@ -2,8 +2,10 @@ var express = require("express");
 var app = express();
 var mongoose = require("mongoose");
 var bodyParser = require("body-parser");
+var methodOverride = require("method-override");
 
 app.set("view engine", "ejs");
+app.use(methodOverride("_method"));
 app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.urlencoded({extended: true}));
 mongoose.connect("mongodb://localhost/geltcards");

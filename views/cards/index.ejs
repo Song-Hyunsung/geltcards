@@ -2,10 +2,12 @@
 
 <h1>This is card index route with path /cards</h1>
 
+<p><a href="/cards/new">Add Card (LINK TO CARD NEW ROUTE)</a></p>
+
 <% cards.forEach(function(card){ %>
     <p><%=card.name%></p>
     <img src="<%=card.image%>">
-    <p><%=card.description%></p>
+    <a href="/cards/<%=card._id%>">Details</a>
 <% }) %>
 
 <% include ../partials/footer %>

@@ -1,0 +1,16 @@
+<% include ../partials/header %>
+
+<h1>This is card show page</h1>
+
+<p><%=card.name%></p>
+<img src="<%=card.image%>">
+<p><%=card.description%></p>
+
+<a href="/cards/<%=card._id%>/edit">Edit</a>
+<a href="/cards">Back</a>
+
+<form action="/cards/<%=card._id%>?_method=DELETE" method="POST">
+    <button>Delete</button>
+</form>
+
+<% include ../partials/footer %>

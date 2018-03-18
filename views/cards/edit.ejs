@@ -1,0 +1,12 @@
+<% include ../partials/header %>
+
+<h1>THIS EDIT PAGE FOR A SPECIFIC :id CARD</h1>
+
+<form action="/cards/<%=card._id%>/?_method=PUT" method="POST">
+    <input type="text" name="card[name]" value="<%=card.name%>">
+    <input type="text" name="card[image]" value="<%=card.image%>">
+    <textarea name="card[description]"><%=card.description%></textarea>
+    <button>Submit</button>
+</form>
+
+<% include ../partials/footer %>
