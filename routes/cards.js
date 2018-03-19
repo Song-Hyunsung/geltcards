@@ -1,9 +1,7 @@
 var express = require("express");
 var router = express.Router();
 var Card = require("../models/card");
-
-
-
+var middleware = require("../middleware"); // This automatically requires index.js in the middleware directory
 
 //=============== CARDS INDEX ROUTE, LIST ALL CARDS ===============//
 router.get("/", function(req, res){
@@ -18,7 +16,13 @@ router.get("/", function(req, res){
 })
 
 //=============== CARDS POST ROUTE, ADD CARD TO DB  ===============//
-router.post("/", function(req, res){
+router.post("/", middleware.isLoggedIn, function(req, res){
+    var newCard = req.body.newCard;
+    newCard.author = {
+        id: req.user._id,
+        username: req.user.username
+    }
+    console.log(newCard);
     Card.create(req.body.newCard, function(err, createdCard){
         if(err){
             console.log(err);
@@ -29,7 +33,7 @@ router.post("/", function(req, res){
 })
 
 //============= CARDS NEW ROUTE, SHOW FORM ADDING CARD ============//
-router.get("/new", function(req, res){
+router.get("/new", middleware.isLoggedIn, function(req, res){
     res.render("cards/new");
 })
 
@@ -46,7 +50,7 @@ router.get("/:id", function(req, res){
 })
 
 //============= CARDS EDIT ROUTE, EDIT DETAIL INFO CARD ============//
-router.get("/:id/edit", function(req, res){
+router.get("/:id/edit", middleware.checkCardOwnership, function(req, res){
     Card.findById(req.params.id, function(err, foundCard){
         if(err){
             console.log(err);
@@ -58,7 +62,7 @@ router.get("/:id/edit", function(req, res){
 })
 
 //=========== CARDS UPDATE ROUTE, UPDATE DETAIL INFO CARD ===========//
-router.put("/:id", function(req, res){
+router.put("/:id", middleware.checkCardOwnership, function(req, res){
     Card.findByIdAndUpdate(req.params.id, req.body.card, function(err, updatedCard){
         if(err){
             res.redirect("/cards");
@@ -69,7 +73,7 @@ router.put("/:id", function(req, res){
 })
 
 //========== CARDS DELETE ROUTE, DELETE CARD FROM DATABASE ===========//
-router.delete("/:id", function(req, res){
+router.delete("/:id", middleware.checkCardOwnership, function(req, res){
     Card.findByIdAndRemove(req.params.id, function(err){
         if(err){
             res.redirect("/cards");
