@@ -8,6 +8,17 @@
 
 <a href="/cards/<%=card._id%>/edit">Edit</a>
 <a href="/cards">Back</a>
+<a href="/cards/<%=card._id%>/comments/new">Add new comment</a>
+
+<% card.comments.forEach(function(comment){ %>
+    <p><%= comment.text %> by <%= comment.author.username %></p>
+    <a href="/cards/<%=card._id%>/comments/<%=comment._id%>/edit">Edit</a>
+    <form action="/cards/<%=card._id%>/comments/<%=comment._id%>?_method=DELETE" method="POST">
+        <button>Delete</button>
+    </form>
+<% }) %>
+
+
 
 <form action="/cards/<%=card._id%>?_method=DELETE" method="POST">
     <button>Delete</button>

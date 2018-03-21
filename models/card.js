@@ -10,7 +10,13 @@ var cardSchema = new mongoose.Schema({
             ref: "User"
         },
         username: String
-    }
+    },
+    comments: [
+            {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: "comment"
+            }
+    ]
 })
 
 module.exports = mongoose.model("card", cardSchema);

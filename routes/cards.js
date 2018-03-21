@@ -39,7 +39,7 @@ router.get("/new", middleware.isLoggedIn, function(req, res){
 
 //============= CARDS SHOW ROUTE, SHOW DETAIL INFO CARD ============//
 router.get("/:id", function(req, res){
-    Card.findById(req.params.id, function(err, foundCard){
+    Card.findById(req.params.id).populate("comments").exec(function(err, foundCard){
         if(err){
             console.log(err);
             res.redirect("/cards");

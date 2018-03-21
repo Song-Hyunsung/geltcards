@@ -33,10 +33,12 @@ passport.deserializeUser(User.deserializeUser());
 //========== Require routes =========//
 var cardRoutes = require("./routes/cards");
 var indexRoutes = require("./routes/index");
+var commentRoutes = require("./routes/comments");
 
 //========== Use routes ==========//
 app.use("/", indexRoutes);
 app.use("/cards", cardRoutes);
+app.use("/cards/:id/comments", commentRoutes);
 
 //========== Listen for server =========//
 app.listen(process.env.PORT, process.env.IP, function(){
