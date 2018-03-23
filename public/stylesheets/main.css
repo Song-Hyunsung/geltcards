@@ -47,3 +47,28 @@ button {
 .navbar-default .navbar-nav .active a:focus {
     background-color: transparent;
 }
+
+.jumbotron {
+    background-color: transparent !important;
+    text-align: center;
+}
+
+#trans {
+    background-color: transparent !important;
+    border-color: #fff;
+}
+
+.thumbnail img {
+    height: 210px;
+    width: 245px;
+}
+
+.thumbnail .caption {
+    padding-bottom: 0px;
+}
+
+.thumbnail .caption a {
+    font-weight: 500;
+    color: white;
+    font-size: 1.2em;
+}

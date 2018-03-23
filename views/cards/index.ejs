@@ -1,15 +1,37 @@
 <% include ../partials/header %>
 
-<h1>This is card index route with path /cards</h1>
+<header class="jumbotron" >
+    <div class="container">
+        <h1>Welcome to Geltcard</h1>
+        <p>See people's personal opinions on popular modern GPU products</p>
+        <p>
+            <a id="trans" class="btn btn-medium btn-primary" href="/cards/new">Add New GPU Product</a>
+        </p> 
+    </div>
+</header>
 
-<p><a href="/cards/new">Add Card (LINK TO CARD NEW ROUTE)</a></p>
-<p><a href="/register">REGISTER ROUTE</a></p>
-<p><a href="/login">LOGIN ROUTE</a></p>
+<div class="container-fluid">    
+  <div class="row text-center">
+    <div class="container">
+      <% cards.forEach(function(card){ %>
+        <div class="col-md-3 col-sm-6">
+          <div id="trans" class="thumbnail">
+            <img src="<%=card.image%>">
+              <div class="caption">
+                <p><a href="/cards/<%=card._id%>"><%=card.name%></a></p>
+              </div>
+          </div>    
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</div>
 
-<% cards.forEach(function(card){ %>
-    <p><%=card.name%></p>
-    <img src="<%=card.image%>">
-    <a href="/cards/<%=card._id%>">Details</a>
-<% }) %>
+
+
+
+
+
+
 
 <% include ../partials/footer %>
