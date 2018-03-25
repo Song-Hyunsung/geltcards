@@ -8,7 +8,8 @@ var express        = require("express"),
     User           = require("./models/user");
     
 //========== Set up mongodb and view engine for ejs ==========//
-mongoose.connect("mongodb://localhost/geltcards");
+// mongoose.connect("mongodb://localhost/geltcards"); LOCAL DB ON C9
+mongoose.connect("mongodb://gelt:BalthasarGelt1!@ds123619.mlab.com:23619/geltcard");
 app.set("view engine", "ejs");
 
 //========== Set static directory & method override & body ==========//
