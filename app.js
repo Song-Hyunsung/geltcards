@@ -35,6 +35,12 @@ var cardRoutes = require("./routes/cards");
 var indexRoutes = require("./routes/index");
 var commentRoutes = require("./routes/comments");
 
+//========== Provide information for all ==========//
+app.use(function(req, res, next){
+    res.locals.currentUser = req.user;
+    next();
+})
+
 //========== Use routes ==========//
 app.use("/", indexRoutes);
 app.use("/cards", cardRoutes);

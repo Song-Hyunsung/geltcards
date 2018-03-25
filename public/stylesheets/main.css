@@ -56,11 +56,34 @@ button {
 #trans {
     background-color: transparent !important;
     border-color: #fff;
+    color: white !important;
 }
 
-.thumbnail img {
+#index_img {
     height: 210px;
     width: 245px;
+}
+
+#desc {
+    white-space: pre-line; 
+}
+
+#background {
+    background-color: transparent;
+    border-color: black;  
+}
+
+textarea {
+    width: 350px;
+    height: 200px;
+}
+
+.container h3 {
+    margin-bottom: 50px;
+}
+
+.delete-form {
+    display: inline;
 }
 
 .thumbnail .caption {

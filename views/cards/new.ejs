@@ -1,12 +1,29 @@
 <% include ../partials/header %>
 
-<h1>THIS IS ROUTE /CARDS/NEW, SHOWING FORM FOR ADDING NEW CAMP</h1>
+<div class="container">
+    
+    <div class="row">
+        <h1 style="text-align: center"> Create new post </h1>
+        <div style="width: 30%; margin: 25px auto;">
+            <form action="/cards" method="POST">
+                <div class="form-group">
+                    <input class="form-control" type="text" name="newCard[name]" placeholder="name">
+                </div>
 
-<form action="/cards" method="POST">
-    <input type="text" name="newCard[name]" placeholder="Model Name">
-    <input type="text" name="newCard[image]" placeholder="Image URL">
-    <textarea name="newCard[description]">Enter Descriptions Here...</textarea>
-    <button>Submit</button>
-</form>
+                <div class="form-group">
+                    <input class="form-control" type="text" name="newCard[image]" placeholder="image url">
+                </div>
+                <div class="form-group">
+                    <textarea name="newCard[description]">Enter descriptions here...</textarea>
+                </div>      
+                <div class="form-group">
+                    <button id="trans" class="btn btn-md btn-primary btn-block"> Submit </button>
+                </div>
+            </form>
+            <a id="trans" href="/cards"> Go Back </a>
+        </div>
+    </div>
+    
+</div>
 
 <% include ../partials/footer %>

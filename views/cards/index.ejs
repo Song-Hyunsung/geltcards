@@ -16,7 +16,7 @@
       <% cards.forEach(function(card){ %>
         <div class="col-md-3 col-sm-6">
           <div id="trans" class="thumbnail">
-            <img src="<%=card.image%>">
+            <img id="index_img" src="<%=card.image%>">
               <div class="caption">
                 <p><a href="/cards/<%=card._id%>"><%=card.name%></a></p>
               </div>

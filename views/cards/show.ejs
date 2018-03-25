@@ -1,27 +1,66 @@
 <% include ../partials/header %>
 
-<h1>This is card show page</h1>
+<div class="container">
+    
+    <h3><%=card.name%></h3>
+    
+    <!--Left side picture, right side name and description-->
+    <div class="row">
+        <div class="col-md-3">
+            <div id="background" class="thumbnail">
+                <p><img class="img-responsive" src="<%=card.image%>"></p>
+                <% if(currentUser && card.author.id.equals(currentUser._id)){ %>
+                    <a id="trans" class="btn btn-xs btn-warning" href="/cards/<%=card._id%>/edit">Edit</a>
+                    <form class="delete-form" action="/cards/<%=card._id%>?_method=DELETE" method="POST">
+                        <button id="trans" class="btn btn-xs btn-danger">Delete</button>
+                    </form>        
+                <% } %>
+             </div>
+        </div>
+        
+        <div class="col-md-9">
+            <div id="desc"><%=card.description%></div>
+        </div>
+    </div>
+    
+    <!--Author name to the bottom right, outside of the above row-->
+    <div class="row">
+        <div class="col-md-12">
+            <p class="pull-right"><em>Submitted by: </em><%=card.author.username%></p> 
+        </div>
+    </div>
+    
+    <!--Another row for comments-->
+    <h3>Comments</h3>
+    <% card.comments.forEach(function(comment){ %>
+        <div class="row">
+            <div class="col-md-12">
+                <strong><%=comment.author.username%></strong>
+                <p><%=comment.text%></p>
+                <div class="pull-right">
+                    <% if(currentUser && comment.author.id.equals(currentUser._id)){ %>
+                        <a id="trans" class="btn btn-xs btn-warning" href="/cards/<%=card._id%>/comments/<%=comment._id%>/edit">Edit</a>
+                        <form class="delete-form" action="/cards/<%=card._id%>/comments/<%=comment._id%>?_method=DELETE" method="POST">
+                            <input type="submit" id="trans" class="btn btn-xs btn-danger" value="Delete">
+                        </form>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    <% }) %>
+    
+    <br>
+    
+    <!--Row for adding new comment button-->
+    <div class="row">
+        <div class="col-md-12">
+            <a id="trans" class="btn btn-md pull-right" href="/cards/<%=card._id%>/comments/new">Add new comment</a>
+        </div>
+    </div>
+    
+    
+    
+</div>
 
-<p><%=card.name%></p>
-<img src="<%=card.image%>">
-<p><%=card.description%></p>
-
-<a href="/cards/<%=card._id%>/edit">Edit</a>
-<a href="/cards">Back</a>
-<a href="/cards/<%=card._id%>/comments/new">Add new comment</a>
-
-<% card.comments.forEach(function(comment){ %>
-    <p><%= comment.text %> by <%= comment.author.username %></p>
-    <a href="/cards/<%=card._id%>/comments/<%=comment._id%>/edit">Edit</a>
-    <form action="/cards/<%=card._id%>/comments/<%=comment._id%>?_method=DELETE" method="POST">
-        <button>Delete</button>
-    </form>
-<% }) %>
-
-
-
-<form action="/cards/<%=card._id%>?_method=DELETE" method="POST">
-    <button>Delete</button>
-</form>
 
 <% include ../partials/footer %>
